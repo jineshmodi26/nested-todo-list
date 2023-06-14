@@ -1,0 +1,14 @@
+{
+    "users" : [
+        {
+            "username" : "jinesh.modi",
+            "password" : "U2FsdGVkX1+dsLPMVQ1OkFqz24Ra/CdSn56Vi/gfU1w=",
+            "todos" : []
+        },
+        {
+            "username" : "test.user",
+            "password" : "U2FsdGVkX1+BlSIEaHpZAJ9WgPD9R7VuDbNCphvLkNU=",
+            "todos" : []
+        }
+    ]
+}

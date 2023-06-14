@@ -1,25 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
+import { createContext, useState } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Login from './Components/Login';
+import Dashboard from './Components/Dashboard';
+import PageNotFound from './Components/PageNotFound';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const RouteGuard = React.lazy(() => import("./Components/RouteGuard"))
 
-function App() {
+export const MyContext = createContext({})
+
+const App : React.FC = () => {
+
+  const [user, setUser] = useState<object>({})
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MyContext.Provider value={{user, setUser}}>
+      <div className="App">
+        <ToastContainer />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<RouteGuard><Dashboard /></RouteGuard>} />
+            <Route path='/login' element={<Login />} />
+            <Route path='*' element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </MyContext.Provider>
   );
 }
 
